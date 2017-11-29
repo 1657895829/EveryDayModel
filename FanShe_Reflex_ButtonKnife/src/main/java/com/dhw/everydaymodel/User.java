@@ -51,4 +51,5 @@ public class User {
     public int zhi(){
         return 20*5;
     }
+
 }
