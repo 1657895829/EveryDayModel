@@ -7,10 +7,12 @@ package com.dhw.eventbus_lianxi;
 
 public class FirstEvent {
     private String mMsg;
+
     public FirstEvent(String msg) {
         //声明属性
         mMsg = msg;
     }
+
     public String getMsg(){
         return mMsg;
     }
