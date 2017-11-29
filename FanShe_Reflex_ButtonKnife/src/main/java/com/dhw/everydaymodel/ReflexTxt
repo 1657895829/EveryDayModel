@@ -1,0 +1,61 @@
+ * 1、概念
+ * 2、学的一个类：反射类：Reflex
+ * 3、怎么获得Class对象？
+ * 		—— forName（“包名.类名”）；
+ * 		—— 类名.class
+ * 		—— 对象名.getClass();//Object类的getClass方法
+ * 4、怎样用反射实例化？
+ * 		注意：Class类没有构造方法，通过Class类提供方法创建
+ *     —— 根据无参构造实例化     Class的对象名.newInstance（）；
+ *     —— 根据有参构造实例化
+ *     	1、获取你想要的构造方法  getDeclaredConstructor(Class<?>... parameterTypes) //括号里的参数填类型.class
+       2、实例化    调用newInstance(Object... initargs) 使用此 Constructor 对象表示的构造方法来创建该构造方法的声明类的新实例，并用指定的初始化参数初始化该实例。
+ * 5、怎样获取所有的构造方法？
+ *			   Class的对象名.getDeclaredConstructors();//返回值都是数组  都需要遍历输出
+ * 6、怎样获取所有的字段？
+ *				Class的对象名.getDeclaredFields()；
+ * 7、怎样获取单个字段？
+ *		Class的对象名.getDeclaredField(String name) ；//参数写你想要的字段名称
+ *		修改字段    字段对象名.set(Object obj, Object value) ;//第一个参数：那个对象需要修改  第二个参数：需要修改的值
+ *		得到字段   字段的对象名.get();
+ *		注意：如果字段的权限是private修饰的 需要打开权限开关     字段的对象名.setAcessable（true）；
+ * 8、怎样获取所有的普通方法？
+ *		Class的对象名.getDeclaredMethods()；
+ * 9、怎样获取你想要的方法并调用？
+ *			getDeclaredMethod(String name, Class<?>... parameterTypes) //这个参数是可变长参数     第一个必须写：方法的名字      类型.class
+ *
+ *			调用 ：获取的方法名.invoke(Object obj, Object... args) //第一个参数是哪个对象在调用此方法，第二个参数 填入参数
+
+
+
+/**
+ * 反射：
+ * 1、概念：每个.class文件都是一个Class对象，通过Class对象获取.class文件中的信息叫做反射
+ * 2、如何获取Class对象
+ * 		—— Class.forName("包名+类名");   （主要使用这一个）
+ * 		—— 类名.class;
+ * 		—— 对象名.getClass();
+ * 3、Class类里面常用的方法
+ * 	获取所有的字段方法   getDeclaredFields()  返回值   Field[]
+ * 		获取所有的构造方法  getDeclaredConstructors()  返回值Constructors[]
+ * 	获取所有的普通方法  getDeclaredMethods()   返回值 Methods[]
+ * 		反射哪个对象             getName()
+ * 4、如何使用反射实例化
+ * 		—— Class对象名.newInstance() ; 通过无参构造实例化对象
+ * 		—— Constructor<?> cons = c.getDeclaredConstructor(Class<?>... parameterTypes)
+ * 		cons.newInstance("aa",1);//有参构造实例化
+ * 		例如：Constructor<?> cons = c1.getDeclaredConstructor(String.class,int.class);
+ * 			Student s2 = (Student)cons.newInstance("李四",25);
+ * 5、如何使用反射获取字段（属性）—— field
+ * 		—— Field field = c.getDeclaredField(String name)  自己指定属性名字
+ * 		如果属性是private修饰   要取消封装
+ * 			field.setAccessible(true);
+ * 			field.get(s2)//s2代表什么？ 取那一对象的属性值
+ * 			field.set(s2, 20);//设置属性
+ * 6、如何使用反射获取方法
+ * 方法：无参无返回值   无参有返回值   有参有返回值  有参无返回值
+ * Method method = c1.getDeclaredMethod("add", int.class,int.class);//为了找到add方法
+ * 	add：方法名     参数类型     参数类型
+ * 	Object invoke = method.invoke(s2, 2,3);//调用
+ * 	s2:选择哪个对象调用此方法     2,3 传的参数
+    Integer sum = (Integer) invoke;  强转  返回值类型是int  但是 基本要自动装箱

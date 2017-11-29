@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EventBusDemo/EventBusDemo.iml" filepath="$PROJECT_DIR$/EventBusDemo/EventBusDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EventBus_LianXi/EventBus_LianXi.iml" filepath="$PROJECT_DIR$/EventBus_LianXi/EventBus_LianXi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EveryDayModel.iml" filepath="$PROJECT_DIR$/EveryDayModel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FanShe_Reflex_ButtonKnife/FanShe_Reflex_ButtonKnife.iml" filepath="$PROJECT_DIR$/FanShe_Reflex_ButtonKnife/FanShe_Reflex_ButtonKnife.iml" />
+    </modules>
+  </component>
+</project>
